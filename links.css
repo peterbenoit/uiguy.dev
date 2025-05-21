@@ -628,6 +628,7 @@ body {
 .link-content p {
 	font-size: 14px;
 	color: var(--color-text-secondary);
+	max-width: 500px;
 }
 
 .link-arrow {
@@ -709,6 +710,11 @@ body {
 
 .beccas-books .link-icon {
 	background: linear-gradient(135deg, #d7c4a3, #3e2c28);
+	color: white;
+}
+
+.route-planner .link-icon {
+	background: linear-gradient(135deg, #22c55f, #0d9488);
 	color: white;
 }
 
