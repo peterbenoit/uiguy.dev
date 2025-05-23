@@ -703,6 +703,11 @@ body {
 	color: white;
 }
 
+.image-color-palette-generator .link-icon {
+	background: linear-gradient(135deg, #ffffff, #fff3f3);
+	color: white;
+}
+
 .aprils-art .link-icon {
 	background: linear-gradient(135deg, #fb24c9, #fa1547);
 	color: white;
