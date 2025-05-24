@@ -236,7 +236,7 @@ body {
 }
 
 .enable-motion-btn.primary {
-	background: linear-gradient(135deg, #4f46e5, #6366f1);
+	background: linear-gradient(105deg, #4f46e5, #6366f1);
 	color: white;
 }
 
@@ -664,77 +664,82 @@ body {
 }
 
 .portfolio .link-icon {
-	background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+	background: linear-gradient(115deg, #3b82f6, #8b5cf6);
 	color: white;
 }
 
 .brick-city .link-icon {
-	background: linear-gradient(135deg, #f97316, #ef4444);
+	background: linear-gradient(125deg, #f97316, #ef4444);
 	color: white;
 }
 
 .straypath .link-icon {
-	background: linear-gradient(135deg, #059669, #10b981);
+	background: linear-gradient(145deg, #059669, #10b981);
 	color: white;
 }
 
 .scenic-byways .link-icon {
-	background: linear-gradient(135deg, #4285F4, #34A853);
+	background: linear-gradient(165deg, #4285F4, #34A853);
 	color: white;
 }
 
 .showcase .link-icon {
-	background: linear-gradient(135deg, #6366f1, #8b5cf6);
+	background: linear-gradient(155deg, #6366f1, #8b5cf6);
 	color: white;
 }
 
 .get-viewport .link-icon {
-	background: linear-gradient(135deg, #2563eb, #0891b2);
+	background: linear-gradient(175deg, #2563eb, #0891b2);
+	color: white;
+}
+
+.resource-loader .link-icon {
+	background: linear-gradient(205deg, #3390dc, #1e4fd8);
 	color: white;
 }
 
 .saltykeys .link-icon {
-	background: linear-gradient(135deg, #ffb300, #63b208);
+	background: linear-gradient(225deg, #ffb300, #63b208);
 	color: white;
 }
 
 .url-shortener .link-icon {
-	background: linear-gradient(135deg, #5500ff, #63b208);
+	background: linear-gradient(245deg, #5500ff, #63b208);
 	color: white;
 }
 
 .image-color-palette-generator .link-icon {
-	background: linear-gradient(135deg, #ffffff, #fff3f3);
+	background: linear-gradient(265deg, #ffffff, #fff3f3);
 	color: white;
 }
 
 .aprils-art .link-icon {
-	background: linear-gradient(135deg, #fb24c9, #fa1547);
+	background: linear-gradient(95deg, #fb24c9, #fa1547);
 	color: white;
 }
 
 .beccas-books .link-icon {
-	background: linear-gradient(135deg, #d7c4a3, #3e2c28);
+	background: linear-gradient(75deg, #d7c4a3, #3e2c28);
 	color: white;
 }
 
 .route-planner .link-icon {
-	background: linear-gradient(135deg, #22c55f, #0d9488);
+	background: linear-gradient(55deg, #22c55f, #0d9488);
 	color: white;
 }
 
 .wordleish .link-icon {
-	background: linear-gradient(135deg, #6aaa64, #c9b458);
+	background: linear-gradient(35deg, #6aaa64, #c9b458);
 	color: white;
 }
 
 .tetrish .link-icon {
-	background: linear-gradient(135deg, #FF00AA, #00FFF0);
+	background: linear-gradient(15deg, #FF00AA, #00FFF0);
 	color: white;
 }
 
 .tailwind .link-icon {
-	background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+	background: linear-gradient(195deg, #06b6d4, #0ea5e9);
 	color: white;
 }
 
@@ -744,22 +749,22 @@ body {
 }
 
 .repos .link-icon {
-	background: linear-gradient(135deg, #475569, #64748b);
+	background: linear-gradient(315deg, #475569, #64748b);
 	color: white;
 }
 
 .image-processor .link-icon {
-	background: linear-gradient(135deg, #ffffff, #87b7ff);
+	background: linear-gradient(345deg, #ffffff, #87b7ff);
 	color: white;
 }
 
 .storage-manager .link-icon {
-	background: linear-gradient(135deg, #f43f5e, #ec4899);
+	background: linear-gradient(275deg, #f43f5e, #ec4899);
 	color: white;
 }
 
 .codepen-demos .link-icon {
-	background: linear-gradient(135deg, #9333ea, #c026d3);
+	background: linear-gradient(285deg, #9333ea, #c026d3);
 	color: white;
 }
 
