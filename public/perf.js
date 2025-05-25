@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			const preloadLink = document.createElement('link');
 			preloadLink.rel = 'preload';
 			preloadLink.as = 'image';
-			preloadLink.href = '/path-to-resource';
+			preloadLink.href = '/img/crucial-image.webp'; // FIXME: Update with actual critical resource path
 			document.head.appendChild(preloadLink);
 		});
 	}
@@ -111,14 +111,32 @@ const loadDeferredStyles = () => {
 // Use requestAnimationFrame for visual changes
 const rafCallback = () => {
 	// Handle any animations or visual updates here
-	// ...
+	// Example: Smoothly animate an element's opacity
+	const animatedElement = document.getElementById('animated-element');
+	if (animatedElement) {
+		let opacity = parseFloat(animatedElement.style.opacity || 0);
+		if (opacity < 1) {
+			opacity += 0.05;
+			animatedElement.style.opacity = opacity;
+			requestAnimationFrame(rafCallback);
+		}
+	}
 };
+
+// Call rafCallback to initiate animation if an element with id 'animated-element' exists
+if (document.getElementById('animated-element')) {
+	requestAnimationFrame(rafCallback);
+}
 
 // Run performance-sensitive operations during idle periods
 if ('requestIdleCallback' in window) {
 	requestIdleCallback(() => {
 		// Heavy calculations or non-critical operations
-		// ...
+		// Example: Send analytics data or perform non-critical logging
+		console.log('Browser is idle, performing non-critical tasks.');
+		// if (typeof sendAnalytics === 'function') {
+		// sendAnalytics({ event: 'idle_task_executed' });
+		// }
 	});
 }
 

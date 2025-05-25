@@ -9,6 +9,16 @@
 	--border-radius: 14px;
 	--font-family: 'Outfit', sans-serif;
 	--transition: all 0.3s ease;
+
+	/* Scrollbar Variables */
+	--scrollbar-size: 8px;
+	--scrollbar-minlength: 40px;
+	/* Minimum length of scrollbar thumb */
+	--scrollbar-ff-width: thin;
+	/* Firefox specific width */
+	--scrollbar-track-color: rgba(10, 10, 10, 0.2);
+	--scrollbar-thumb-color: rgba(99, 102, 241, 0.3);
+	--scrollbar-thumb-hover-color: rgba(99, 102, 241, 0.5);
 }
 
 /* Performance optimizations */
@@ -65,9 +75,9 @@
 }
 
 /* Font display to improve rendering */
-@font-face {
-	font-display: swap;
-}
+/* Set font-display: swap on all @font-face declarations */
+/* This is a placeholder comment to indicate that actual @font-face declarations
+   should use font-display: swap for better performance */
 
 * {
 	margin: 0;
@@ -830,5 +840,101 @@ body {
 
 	.link-content p {
 		font-size: 13px;
+	}
+}
+
+/* Modern Scrollbar Styling */
+/* The main scrollbar styling */
+::-webkit-scrollbar {
+	height: var(--scrollbar-size);
+	width: var(--scrollbar-size);
+}
+
+/* The track (background) of the scrollbar */
+::-webkit-scrollbar-track {
+	background-color: var(--scrollbar-track-color);
+	border-radius: 10px;
+	backdrop-filter: blur(5px);
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* The scrollbar itself (the moving part) */
+::-webkit-scrollbar-thumb {
+	background: linear-gradient(135deg,
+			rgba(99, 102, 241, 0.3),
+			rgba(79, 70, 229, 0.4));
+	border-radius: 10px;
+	min-height: var(--scrollbar-minlength);
+	backdrop-filter: blur(4px);
+	box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
+	transition: all 0.3s ease;
+	background-size: 200% 100%;
+	background-position: 0 0;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Scrollbar on hover */
+::-webkit-scrollbar-thumb:hover {
+	background-position: 100% 0;
+	background: linear-gradient(135deg,
+			rgba(99, 102, 241, 0.5),
+			rgba(79, 70, 229, 0.6));
+	box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Scrollbar on active state (when clicked) */
+::-webkit-scrollbar-thumb:active {
+	background: linear-gradient(135deg,
+			rgba(99, 102, 241, 0.7),
+			rgba(79, 70, 229, 0.8));
+	box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Scrollbar corner (where horizontal and vertical scrollbars meet) */
+::-webkit-scrollbar-corner {
+	background-color: transparent;
+}
+
+/* For Firefox - uses a different approach */
+html {
+	scrollbar-width: var(--scrollbar-ff-width);
+	scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+}
+
+/* Interactive glow effect on scroll */
+@keyframes scrollGlow {
+	0% {
+		box-shadow: 0 0 8px 0px rgba(99, 102, 241, 0.2);
+	}
+
+	50% {
+		box-shadow: 0 0 12px 2px rgba(99, 102, 241, 0.4);
+	}
+
+	100% {
+		box-shadow: 0 0 8px 0px rgba(99, 102, 241, 0.2);
+	}
+}
+
+/* Apply scrollbar effect only when actually scrolling - using JS to add this class */
+.is-scrolling ::-webkit-scrollbar-thumb {
+	animation: scrollGlow 2s ease-in-out infinite;
+	background: linear-gradient(135deg,
+			rgba(99, 102, 241, 0.5),
+			rgba(79, 70, 229, 0.6),
+			rgba(99, 102, 241, 0.5));
+	background-size: 200% 100%;
+	background-position: 0 0;
+	animation: scrollGlow 2s ease-in-out infinite, moveGradient 4s linear infinite;
+}
+
+@keyframes moveGradient {
+	0% {
+		background-position: 0 0;
+	}
+
+	100% {
+		background-position: 200% 0;
 	}
 }
