@@ -733,6 +733,12 @@ body {
 	color: white;
 }
 
+.sarahs-stories .link-icon {
+	background: linear-gradient(165deg, #607b48, #333713);
+	color: white;
+}
+
+
 .route-planner .link-icon {
 	background: linear-gradient(55deg, #22c55f, #0d9488);
 	color: white;
