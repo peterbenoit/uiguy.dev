@@ -116,16 +116,19 @@
         <!-- Preconnect to important domains -->
         <link rel="preconnect" href="https://peterbenoit.com" />
 
-        <!-- Disable Analytics in Development Mode -->
-        <script>
-            if (
-                window.location.hostname === 'localhost' ||
-                window.location.hostname === '127.0.0.1'
-            ) {
-                window['ga-disable-UA-XXXXX-Y'] = true;
-            }
-        </script>
         <script src="/perf.js" defer></script>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BPLBFHJF6W"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-BPLBFHJF6W');
+        </script>
     </head>
     <body>
         <!-- Background Elements -->
