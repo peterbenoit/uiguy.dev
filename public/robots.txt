@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Allow all crawlers
-Sitemap: https://uiguy.dev/sitemap.xml
+Sitemap: https://www.uiguy.dev/sitemap.xml
