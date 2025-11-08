@@ -664,6 +664,12 @@ body {
 	padding: 0 8px;
 }
 
+.section-title a {
+	color: var(--color-text-secondary);
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
 .section-icon {
 	display: flex;
 	align-items: center;
