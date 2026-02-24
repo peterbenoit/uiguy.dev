@@ -780,6 +780,11 @@ body {
 	color: white;
 }
 
+.requery .link-icon {
+	background: linear-gradient(345deg, #ffffff, #000000);
+	color: white;
+}
+
 .storage-manager .link-icon {
 	background: linear-gradient(275deg, #f43f5e, #ec4899);
 	color: white;
