@@ -5,15 +5,50 @@ import argparse
 from PIL import Image, ImageDraw
 import io
 
-def generate_icons(logo_path, output_dir='.'):
+def create_shape_mask(size, shape, radius_pct=20):
+    """
+    Create a grayscale mask for the given shape.
+    White pixels are visible; black pixels become transparent.
+
+    Args:
+        size (tuple): (width, height) of the mask
+        shape (str): 'square', 'rounded', or 'circle'
+        radius_pct (int): corner radius as a percentage of the shortest side (rounded only)
+    """
+    mask = Image.new('L', size, 0)
+    draw = ImageDraw.Draw(mask)
+    w, h = size
+
+    if shape == 'circle':
+        draw.ellipse([(0, 0), (w - 1, h - 1)], fill=255)
+    elif shape == 'rounded':
+        radius = int(min(w, h) * radius_pct / 100)
+        try:
+            draw.rounded_rectangle([(0, 0), (w - 1, h - 1)], radius=radius, fill=255)
+        except AttributeError:
+            # Pillow < 8.2 — draw four corner arcs manually
+            draw.rectangle([(radius, 0), (w - 1 - radius, h - 1)], fill=255)
+            draw.rectangle([(0, radius), (w - 1, h - 1 - radius)], fill=255)
+            for cx, cy in [(radius, radius), (w - 1 - radius, radius),
+                           (radius, h - 1 - radius), (w - 1 - radius, h - 1 - radius)]:
+                draw.ellipse([(cx - radius, cy - radius), (cx + radius, cy + radius)], fill=255)
+    else:  # square
+        draw.rectangle([(0, 0), (w - 1, h - 1)], fill=255)
+
+    return mask
+
+
+def generate_icons(logo_path, output_dir='.', shape='square', radius_pct=20):
     """
     Generate various icon sizes from a source logo file
 
     Args:
         logo_path (str): Path to the source logo file
         output_dir (str): Directory to save generated icons
+        shape (str): Icon shape — 'square', 'rounded', or 'circle'
+        radius_pct (int): Corner radius percentage (0-50) used when shape='rounded'
     """
-    print(f"Generating icons from {logo_path}...")
+    print(f"Generating icons from {logo_path} (shape={shape}, radius={radius_pct}%)...")
 
     # Make sure output directory exists
     os.makedirs(output_dir, exist_ok=True)
@@ -52,6 +87,11 @@ def generate_icons(logo_path, output_dir='.'):
 
             icon.paste(resized_img, position, resized_img)
 
+            # Apply shape mask (rounded corners / circle)
+            if shape != 'square':
+                mask = create_shape_mask(size, shape, radius_pct)
+                icon.putalpha(mask)
+
             # Save the icon
             output_path = os.path.join(output_dir, filename)
             icon.save(output_path)
@@ -65,6 +105,15 @@ def generate_icons(logo_path, output_dir='.'):
         ico_sizes = [(16, 16), (32, 32), (48, 48)]
         # Resize source into each size
         ico_images = [resize_maintain_aspect_ratio(source_img, sz) for sz in ico_sizes]
+        # Apply shape mask to each ICO frame
+        if shape != 'square':
+            masked = []
+            for img, sz in zip(ico_images, ico_sizes):
+                canvas = Image.new('RGBA', sz, (0, 0, 0, 0))
+                canvas.paste(img, (0, 0), img)
+                canvas.putalpha(create_shape_mask(sz, shape, radius_pct))
+                masked.append(canvas)
+            ico_images = masked
         ico_output_path = os.path.join(output_dir, 'favicon.ico')
         # Save the first image but embed all sizes
         ico_images[0].save(ico_output_path, format='ICO', sizes=ico_sizes)
@@ -232,7 +281,21 @@ if __name__ == "__main__":
     parser.add_argument('logo_path', help='Path to the source logo file')
     parser.add_argument('-o', '--output-dir', default='.', help='Directory to save generated icons (default: current directory)')
 
+    parser.add_argument(
+        '--shape',
+        choices=['square', 'rounded', 'circle'],
+        default='square',
+        help='Icon shape: square (default), rounded corners, or circle'
+    )
+    parser.add_argument(
+        '--radius',
+        type=int,
+        default=20,
+        metavar='PCT',
+        help='Corner radius as a percentage of the shortest side (default: 20, used with --shape rounded)'
+    )
+
     args = parser.parse_args()
 
     # Call the icon generation function with provided parameters
-    generate_icons(args.logo_path, args.output_dir)
+    generate_icons(args.logo_path, args.output_dir, shape=args.shape, radius_pct=args.radius)
