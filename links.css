@@ -95,6 +95,8 @@ body {
 	overflow-x: hidden;
 }
 
+
+
 .bg-gradient {
 	position: fixed;
 	top: 0;
@@ -807,6 +809,12 @@ body {
 	display: flex;
 	justify-content: center;
 	gap: 8px;
+}
+
+.footer a {
+	color: var(--color-text);
+	text-decoration: none;
+	transition: color 0.2s;
 }
 
 .divider {
